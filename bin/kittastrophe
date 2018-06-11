@@ -5,5 +5,67 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 require 'kittastrophe'
 
-client = Kittastrophe::Client.new()
-client.hi(ARGV)
+require 'optparse'
+
+if ARGV.empty?
+  ARGV[0] = '-h'
+end
+
+options = {}
+
+parser = OptionParser.new do |opts|
+  opts.banner = "A command line interface in Ruby to fetch information about your kits using the public Typekit APIs"
+  opts.separator ""
+  opts.separator "Options:"
+
+  opts.on("-c", "--configure", "You will be prompted for configuration values of your TypeKit API key.") do |c|
+    options[:cmd] = "config"
+  end
+
+  opts.on("-l", "--list", "List kits owned by the authenticating user") do |l|
+    options[:cmd] = "list"
+  end
+
+  opts.on("-s", "--show ID", "Show information for kit with the given ID") do |id|
+    options[:cmd] = "show"
+    options[:id] = id || ''
+  end
+
+  opts.on_tail("-h", "--help", "Shows help") do |help|
+    puts opts
+    exit
+  end
+
+end
+
+## OptionParser will throw exception upon parsing if you aren't ready for it
+begin
+  parser.parse!
+rescue OptionParser::MissingArgument, OptionParser::InvalidArgument
+  puts "Invalid or missing argument!"
+  puts ""
+  ARGV[0] = '-h'
+  parser.parse!
+  exit
+end
+
+# Slightly more sophisticated error checking
+if options[:cmd] == "show" and options[:id].nil?
+  puts "AAAH"
+  abort(optparse.help)
+end
+
+case options[:cmd]
+when "config"
+  client = Kittastrophe::Client.new()
+  client.hi
+when "list"
+  client = Kittastrophe::Client.new()
+  client.hi
+when "show"
+  client = Kittastrophe::Client.new()
+  client.hi
+else
+  client = Kittastrophe::Client.new()
+  client.hi
+end

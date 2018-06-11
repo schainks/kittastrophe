@@ -4,7 +4,7 @@ require 'optparse'
 module Kittastrophe
   class Client
     def hi()
-      "Schleeb"
+      puts "Schleeb"
     end
   end
 end
