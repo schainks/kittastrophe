@@ -41,8 +41,8 @@ end
 ## OptionParser will throw exception upon parsing if you aren't ready for it
 begin
   parser.parse!
-rescue OptionParser::MissingArgument, OptionParser::InvalidArgument
-  puts "Invalid or missing argument!"
+rescue OptionParser::InvalidArgument, OptionParser::InvalidOption, OptionParser::MissingArgument # why the hell did reordering these work? 
+  puts "Invalid option or missing argument!"
   puts ""
   ARGV[0] = '-h'
   parser.parse!
@@ -51,7 +51,6 @@ end
 
 # Slightly more sophisticated error checking
 if options[:cmd] == "show" and options[:id].nil?
-  puts "AAAH"
   abort(optparse.help)
 end
 
@@ -66,6 +65,6 @@ when "show"
   client = Kittastrophe::Client.new()
   client.hi
 else
-  client = Kittastrophe::Client.new()
-  client.hi
+  abort(optparse.help)
 end
+
