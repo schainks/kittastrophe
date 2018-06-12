@@ -31,6 +31,10 @@ parser = OptionParser.new do |opts|
     options[:id] = id || ''
   end
 
+  opts.on("-z", "") do |id|
+    options[:cmd] = "zoid"
+  end
+
   opts.on_tail("-h", "--help", "Shows help") do |help|
     puts opts
     exit
@@ -62,8 +66,8 @@ when "list"
   pp client.list
 when "show"
   pp client.show(options[:id])
-when "wubbalubbadubdub"
-  pp client.wubba
+when "zoid"
+  pp client.zoidberg
 else
   abort(optparse.help) # don't particularly dig that this has to be here, but it's ok
 end

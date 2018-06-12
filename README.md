@@ -1,12 +1,22 @@
 # Kittastrophe
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/kittastrophe`. To experiment with that code, run `bin/console` for an interactive prompt.
+This Ruby Gem is a CLI client for Adobe's original [TypeKit API](https://typekit.com/docs/api/v1/:format/kits).
 
-TODO: Delete this and the text above, and describe your gem
+It can be used both as a gem or as it's intended CLI tool.
 
-## Installation
+## Installation and dependencies
 
-Add this line to your application's Gemfile:
+This gem assumes you have `liburl` installed.  
+
+Mac OS installation of `libcurl` can be handled vie installing [Homebrew](https://brew.sh/), and then running `$ brew install curl`.
+
+Most modern Linuxes ensure libcurl is installed or make it very easy to do so.
+
+Install `kittastrophe` via
+
+    $ gem install kittastrophe
+
+Or add this line to your application's Gemfile:
 
 ```ruby
 gem 'kittastrophe'
@@ -16,13 +26,23 @@ And then execute:
 
     $ bundle
 
-Or install it yourself as:
+## TODO
 
-    $ gem install kittastrophe
+- [ ] Prettier printing of output
+- [ ] Better encapsulation of functionality
+- [ ] Use proper exit codes for client
+- [ ] Refactor test suite to better encapsulate stubbed API responses 
 
 ## Usage
 
-TODO: Write usage instructions here
+```bash
+Options:
+    -c, --configure              Configure your TypeKit API key
+                                    so you don't have to always remember it.
+    -l, --list                   List kits owned by the authenticating user.
+    -s, --show ID                Show information for kit with the given ID
+    -h, --help                   Shows help
+```
 
 ## Development
 
@@ -32,7 +52,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/kittastrophe.
+Bug reports and pull requests are welcome on GitHub at https://github.com/schainker/kittastrophe.
 
 ## License
 

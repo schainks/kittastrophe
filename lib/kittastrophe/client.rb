@@ -11,13 +11,16 @@ module Kittastrophe
       @api_key = read_api_key
     end
 
+
     def key_path
       @@KEY_PATH
     end
 
+
     def zoidberg
       "Hooray, I'm useful!"
     end
+
 
     def list
       http = Curl.get("https://typekit.com/api/v1/json/kits") do |http|
@@ -39,6 +42,7 @@ module Kittastrophe
       end
 
       body = JSON.parse(http.body_str)
+
       if http.response_code != 200
         process_error(body)
       else
@@ -46,9 +50,11 @@ module Kittastrophe
       end
     end
 
+
     def process_error(body)
-      body[:errors]
+      body["errors"]
     end
+
 
     def configure
       api_key = prompt "Please enter your TypeKit API key: "
@@ -57,13 +63,14 @@ module Kittastrophe
         f.puts "#{api_key}".strip
         f.close
       end
-      exit
     end
+
 
     def prompt(*args)
         print(*args)
         gets
     end
+
 
     def read_api_key
       if File.exists?(@@KEY_PATH)
