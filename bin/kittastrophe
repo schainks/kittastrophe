@@ -59,11 +59,11 @@ case options[:cmd]
 when "config"
   client.configure
 when "list"
-  client.list
+  pp client.list
 when "show"
-  client.show
+  pp client.show(options[:id])
 when "wubbalubbadubdub"
-  client.wubba
+  pp client.wubba
 else
   abort(optparse.help) # don't particularly dig that this has to be here, but it's ok
 end
