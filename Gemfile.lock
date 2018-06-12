@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    kittastrophe (0.1.0)
+    kittastrophe (0.2.0)
       curb (~> 0.9.6)
 
 GEM
